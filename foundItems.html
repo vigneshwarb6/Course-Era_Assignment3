@@ -1,0 +1,13 @@
+<div class="container">
+    <h3>{{title}}</h3>
+<ul>
+     <li ng-repeat="MenuItem in menu.foundItems">
+       {{MenuItem.short_name}} -- {{MenuItem.description}}
+       <button class="btn btn-primary btn-sm" ng-click="menu.onRemove($index);">Don't want this one!</button>
+       </li>
+     </ul>
+
+     <div class="emptyMessage" ng-if="menu.foundItems.length<=0">
+         {{menu.Message}}
+         </div>
+</div>
