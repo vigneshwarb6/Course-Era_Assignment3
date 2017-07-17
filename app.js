@@ -30,13 +30,12 @@ service.foundItems='';
 service.Message=" ";
 service.searchItem=function()
 {
-    if(service.Item.length!==0 && service.foundItems.length>1){
+    if(service.Item.length!==0 ){
  service.foundItems=MenuSearchService.searchItem(service.Item.toLowerCase());
-
     }
     else{
-        console.log("hi");
         service.Message="Nothing found";
+        service.foundItems='';
     }
 };
 
@@ -70,7 +69,6 @@ list.searchItem=function(Item)
 
 list.removeItem=function(Index,foundItems)
 {
-   console.log(Index);
    foundItems.splice(Index,1);
    return foundItems;
 }
