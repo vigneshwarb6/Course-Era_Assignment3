@@ -1,11 +1,43 @@
 <div class="container">
     <h3>{{title}}</h3>
-<ul>
+<!-- <ul>
      <li ng-repeat="MenuItem in menu.foundItems">
        {{MenuItem.short_name}} -- {{MenuItem.description}}
        <button class="btn btn-primary btn-sm" ng-click="menu.onRemove($index);">Don't want this one!</button>
        </li>
-     </ul>
+     </ul> -->
+<table class="table table-bordered" ng-if="menu.foundItems.length>-1">
+<thead ng-if="menu.foundItems.length>1">
+  <tr>
+<th>
+  Short Name
+</th>
+<th>
+  Menu Name
+</th>
+<th>
+  Menu Description
+</th>
+<th>
+  Remove
+</th>
+  </tr>
+</thead>
+<tr ng-repeat="MenuItem in menu.foundItems">
+  <td>
+    {{MenuItem.short_name}}
+  </td>
+  <td>
+    {{MenuItem.name}}
+  </td>
+  <td>
+    {{MenuItem.description}}
+  </td>
+  <td>
+    <button class="btn btn-primary btn-sm" ng-click="menu.onRemove($index);">Don't want this one!</button>
+  </td>
+</tr>
+</table>
 
      <div class="emptyMessage" ng-if="menu.foundItems.length<=0">
          {{menu.Message}}

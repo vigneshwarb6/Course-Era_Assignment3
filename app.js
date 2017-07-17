@@ -1,7 +1,7 @@
 (function(){
 'use strict';
-angular.module('MenuApp',[])
-.controller('MenuController',MenuController)
+angular.module('NarrowItDownApp',[])
+.controller('NarrowItDownController',NarrowItDownController)
 .service('MenuSearchService',MenuSearchService)
 .directive('foundItems',foundItems)
 .constant('ApiBasePath',"https://davids-restaurant.herokuapp.com");
@@ -20,9 +20,9 @@ function foundItems(){
     return ddo;
 }
 
-MenuController.$inject=['MenuSearchService'];
+NarrowItDownController.$inject=['MenuSearchService'];
 
-function MenuController(MenuSearchService)
+function NarrowItDownController(MenuSearchService)
 {
 var service=this;
 service.Item='';
@@ -30,7 +30,7 @@ service.foundItems='';
 service.Message=" ";
 service.searchItem=function()
 {
-    if(service.Item.length!==0){        
+    if(service.Item.length!==0){
  service.foundItems=MenuSearchService.searchItem(service.Item.toLowerCase());
     }
     else{
@@ -52,12 +52,12 @@ var statusErr='';
 var list=this;
 list.searchItem=function(Item)
 {
- var foundItems=[];   
+ var foundItems=[];
     $http({
         method:'GET',
-        url:(ApiBasePath + "/menu_items.json")       
+        url:(ApiBasePath + "/menu_items.json")
     }).then(function(response){
-        retrieveItem(response.data.menu_items,Item,foundItems);                       
+        retrieveItem(response.data.menu_items,Item,foundItems);
         statusErr=response.status;
     },function(response)
     {
@@ -68,15 +68,15 @@ list.searchItem=function(Item)
 };
 
 list.removeItem=function(Index,foundItems)
-{    
+{
    console.log(Index);
    foundItems.splice(Index,1);
    return foundItems;
 }
 
 var retrieveItem=function(data,Item,foundItems)
-{   
-    for(var i=0;i<data.length;i++){  
+{
+    for(var i=0;i<data.length;i++){
     if(data[i].description.toLowerCase().indexOf(Item)>-1)
     {
         foundItems.push(data[i]);
