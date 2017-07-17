@@ -30,8 +30,9 @@ service.foundItems='';
 service.Message=" ";
 service.searchItem=function()
 {
-    if(service.Item.length!==0){
+    if(service.Item.length!==0 && service.foundItems.length>1){
  service.foundItems=MenuSearchService.searchItem(service.Item.toLowerCase());
+
     }
     else{
         console.log("hi");
